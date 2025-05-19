@@ -1,45 +1,70 @@
 public class heapSort {
+
     public static void main(String[] args) {
-        int[] vetor = {4, 10, 3, 5, 1};
+        // Array inicial desordenado
+        int[] vector = {4, 10, 3, 5, 1};
+
+        // Imprime o array original
         System.out.println("Array original:");
-        for (int num : vetor) {
-            System.out.print(num + " ");
+        for (int number : vector) {
+            System.out.print(number + " ");
         }
-        heapSort(vetor);
+
+        // Chama o método heapSort para ordenar o array
+        heapSort(vector);
+
+        // Imprime o array ordenado
         System.out.println("\nArray ordenado:");
-        for (int num : vetor) {
-            System.out.print(num + " ");
+        for (int number : vector) {
+            System.out.print(number + " ");
         }
     }
-    public static void heapSort(int[] vetor) {
-        int tamanho = vetor.length;
-        int i = tamanho / 2, pai, filho, t;
+
+    // Método principal do HeapSort
+    public static void heapSort(int[] vector) {
+        int size = vector.length;
+        int i = size / 2;  // Começa do meio do array (último nó pai)
+        int father, son, t;    // Variáveis auxiliares: pai, filho e temporária
+
+        // Loop principal do HeapSort
         while (true) {
+            // Construção do heap máximo
             if (i > 0) {
                 i--;
-                t = vetor[i];
-            } else {
-                tamanho--;
-                if (tamanho <= 0) return;
-                t = vetor[tamanho];
-                vetor[tamanho] = vetor[0];
+                t = vector[i];  // Pega o elemento atual
             }
-            pai = i;
-            filho = (i * 2) + 1;
-            while (filho < tamanho) {
-                if ((filho + 1 < tamanho) && (vetor[filho + 1] > vetor[filho])) {
-                    filho++;
+            // Extração do maior elemento (raiz do heap)
+            else {
+                size--;
+                if (size <= 0) return;  // Condição de parada
+
+                // Move o maior elemento (raiz) para o final do array
+                t = vector[size];
+                vector[size] = vector[0];
+            }
+
+            father = i;
+            son = (i * 2) + 1;  // Calcula o filho esquerdo
+
+            // Reorganiza o heap após a extração
+            while (son < size) {
+                // Verifica qual filho é maior (esquerdo ou direito)
+                if ((son + 1 < size) && (vector[son + 1] > vector[son])) {
+                    son++;  // Seleciona o filho direito se for maior
                 }
-                if (vetor[filho] > t) {
-                    vetor[pai] = vetor[filho];
-                    pai = filho;
-                    filho = (pai * 2) + 1;
+
+                // Se o filho for maior que o pai, promove o filho
+                if (vector[son] > t) {
+                    vector[father] = vector[son];
+                    father = son;
+                    son = (father * 2) + 1;  // Avança para o próximo filho
                 } else {
-                    break;
+                    break;  // Se não, encerra o ajuste
                 }
             }
-            vetor[pai] = t;
+
+            // Coloca o elemento temporário na posição correta
+            vector[father] = t;
         }
     }
 }
-
