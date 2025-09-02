@@ -63,7 +63,7 @@ public class pageThree {
 
         // Botão para encerrar o programa com o texto "FIM"
         JButton closeButton = new JButton("FIM");
-        closeButton.setBounds(120, 470, 100, 50); // Posição central inferior
+        closeButton.setBounds(45, 470, 100, 50); // Posição central inferior
         panel.add(closeButton);
 
         // Ação do botão: fecha a janela e encerra o programa
@@ -72,6 +72,20 @@ public class pageThree {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();      // Fecha a janela
                 System.exit(0);       // Encerra a aplicação
+            }
+        });
+
+        JButton returnButton = new JButton("Reiniciar");
+        returnButton.setBounds(145, 470, 100, 50);
+        panel.add(returnButton);
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dataBase.resetGame();
+
+                frame.dispose();
+                new scoreboard();
             }
         });
     }
