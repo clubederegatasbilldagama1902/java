@@ -14,4 +14,15 @@ public class dataBase {
     // Contadores de pontos dentro do set atual para cada jogador
     static int pointPlayerOne = 0;  // Pontos do jogador 1 no set atual
     static int pointPlayerTwo = 0;  // Pontos do jogador 2 no set atual
+
+    public static void resetGame() {
+        playerOne = "";
+        playerTwo = "";
+        set = 0;
+        point = 0;
+        setPointPlayerOne = 0;
+        setPointPlayerTwo = 0;
+        pointPlayerOne = 0;
+        pointPlayerTwo = 0;
+    }
 }
